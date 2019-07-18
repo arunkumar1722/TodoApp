@@ -1,0 +1,29 @@
+<header>
+<script src="app.js"></script>
+   	<div id='header-left'>
+    		<h1>Todo List</h1>
+    		<h3>Add a Todo!</h3>
+  	</div>
+  	<div>
+    		<form action="/todos" method="POST" class="form">
+			  <input type="text" name="title" required/>
+			  <input type="date" name="date" required/>
+      		<input type="submit" />
+    	</form>
+  	</div>
+  </header>
+  <section class='todos-container'>
+  	<div class='gallery'>
+    	<% @todos.each_with_index do |(todo, date), index| %>
+      	<div class='btn-container'>
+        	<h3>
+				  <a href="/todos/<%= todo %>" class="todo-box"> <%= todo %> <%= date %></a>
+			</h3>
+			<form method='POST' action='/todos/<%= todo %>'>
+                    <input type='hidden' name='_method' value='delete'>
+                    <input type='submit' value='Delete'>
+	          </form>
+          </div>
+    	<% end %>
+  	</div>
+  </section>
